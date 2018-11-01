@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'com.taobao.android.weex.plugin.gradle'
+android {
+    compileSdkVersion  rootProject.ext.compileSdkVersion  //27
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.jdjz.lrucachedemo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion  rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //添加如下配置就OK了
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
+        ndk {
+            abiFilters "x86"
+            abiFilters "armeabi"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+}
+
+greendao {
+    schemaVersion 9
+    targetGenDir 'src/main/java'
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+
+dependencies {
+    //compile fileTree(include: ['*.jar'], dir: 'libs')
+    provided files('libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar')
+    provided files('libs/AMap_Location_V4.2.0_20180809.jar')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support.constraint:constraint-layout:${project.constraintLibVersion}"
+    testCompile "junit:junit:${project.junitLibVersion}"
+    compile "com.jakewharton:butterknife:${project.butterKnifeLibVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${project.butterKnifeLibVersion}"
+    //联系人
+    implementation "com.android.support:recyclerview-v7:${project.supportLibVersion}"
+    implementation "com.github.promeg:tinypinyin:${project.tinypinyinLibVersion}"
+    compile "org.greenrobot:eventbus:${project.eventbusLibVersion}"
+    implementation project(':contact')
+    //app.java ： 为了解决 “65535 方法数超标” 以及 “INSTALL_FAILED_DEXOPT”
+    compile 'com.android.support:multidex:1.0.2'
+    //greendao
+    compile "org.greenrobot:greendao:${project.greenDaoLibVersion}"
+    compile 'net.zetetic:android-database-sqlcipher:3.5.4@aar'
+    implementation project(':utils')
+    compile project(path: ':weexlib')
+    implementation "com.github.bumptech.glide:glide:${project.glideLibVersion}"
+    implementation "com.github.bumptech.glide:okhttp3-integration:${project.glideLibVersion}"
+    implementation "com.github.bumptech.glide:annotations:${project.glideLibVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${project.glideLibVersion}"
+    // implementation project(':zxinglibrary')
+    //compile project(path: ':webviewjs')
+    // compile 'com.github.lzyzsd:jsbridge:1.0.4'
+    implementation project(':webviewjslib')
+    compile project(path: ':previewimage')
+    compile project(path: ':PhotoPicker')
+}

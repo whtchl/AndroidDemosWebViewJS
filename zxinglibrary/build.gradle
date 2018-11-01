@@ -1,0 +1,67 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.yuzhiqiang1993'
+
+android {
+    compileSdkVersion  rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName  rootProject.ext.weexlib_versionName
+        vectorDrawables.useSupportLibrary = true
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api files('libs/core-3.3.0.jar')
+    compile "com.android.support:appcompat-v7:${project.supportLibVersion}"
+    compile "com.android.support:design:${project.supportLibVersion}"
+    compile "com.android.support:support-v4:${project.supportLibVersion}"
+    compile "com.android.support:support-vector-drawable:${project.supportLibVersion}"
+
+    implementation "org.greenrobot:eventbus:${project.eventbusLibVersion}"
+/*
+    implementation "com.android.support:appcompat-v7:$android_support"
+    implementation "com.android.support:design:$android_support"
+    implementation "com.android.support:support-v4:$android_support"
+    implementation "com.android.support:support-vector-drawable:$android_support"
+*/
+
+    compile project(path: ':common')
+}
+
+//// 指定编码
+//tasks.withType(JavaCompile) {
+//    options.encoding = "UTF-8"
+//}
+
+// 打包源码
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+//制作文档
+//task javadoc(type: Javadoc) {
+//    failOnError  false
+//    source = android.sourceSets.main.java.sourceFiles
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    classpath += configurations.compile
+//}
+
+// 打包文档
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+
+artifacts {
+    archives sourcesJar
+//    archives javadocJar
+}

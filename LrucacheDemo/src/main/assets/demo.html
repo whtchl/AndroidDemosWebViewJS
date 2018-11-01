@@ -1,0 +1,588 @@
+<head>
+    <meta name="referrer" content="never">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>
+        js调用java
+    </title>
+</head>
+
+<body>
+<p>
+    <xmp id="show">
+    </xmp>
+</p>
+<p>
+    <xmp id="init">
+    </xmp>
+</p>
+<p>
+    <input type="button" id="id_gettoken" value="获取token!" onclick="reqGetOpenId()"/>
+</p>
+<p>
+    <input type="text" id="token" value="token"/>
+    <input type="button" id="id_settoken" value="设置token" onclick="setToken()"/>
+</p>
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+<br>
+<input type="button" id="id_getnetworkstatus" value="获取网络状态" onclick="reqGetNetworkType()"/>
+
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+<br>
+<p>
+    <input type="number" id="phoneNumber" value="输入电话号码"/>
+    <input type="button" id="id_makephonecall" value="拨打电话" onclick="reqMakePhoneCall()"/>
+</p>
+
+
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+<br>
+<input type="button" id="id_getSystemInfo" value="获取设备信息" onclick="reqGetSystemInfo()"/>
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+<br>
+<p>
+    输入日期格式：1. yyyy-MM-dd（默认） 2. HH:mm 3. yyyy-MM-dd HH:mm  4 yyyy-MM-dd HH:mm:ss<br>
+    <input type="text" id="format" hint="输入日期格式：1.	yyyy-MM-dd（默认） 2. HH:mm 3. yyyy-MM-zz HH:mm 4 yyyy-MM-dd HH:mm:ss"
+           value=""/>
+</p>
+<p>
+    初始选择的日期时间（时间戳)，默认当前时间<br>
+    <input type="text" id="currentDate" value="1540541310000"/>
+</p>
+<p>
+    最小日期时间（时间戳）<br>
+    <input type="text" id="startDate"  value="1445846910000"/>
+</p>
+<p>
+    最大日期时间（时间戳）<br>
+    <input type="text" id="enzzate"   value="1761466110000"/>
+</p>
+<p>
+    <input type="button" id="id_datepicker" value="选择日期时间" onclick="reqDatePicker()"/>
+</p>
+
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+<br>
+
+<p>
+    扫码样式(默认 qr) qr:样式为二维码扫码框; bar:样式为条形码扫码框<br>
+    <input type="text" id="barqcode"/>
+    <input type="button" id="id_scanbarqcode" value="二维码和条码扫描" onclick="reqScan()"/>
+
+</p>
+
+<hr style="height:3px;border:none;border-top:3px solid #FF4081;"/>
+    <br>
+    持续定位流程：startAutoLBS()->stopAutoLBS()<br>
+    <input type="hidden" id="lbs_type" hint="wgs84/gcj02"/>
+    <input type="button" id="id_startautolbs" value="开始持续定位" onclick="reqStartAutoLBS()"/>
+    <input type="button" id="id_stopautolbs" value="关闭持续定位" onclick="reqStopAutoLBS()"/>
+     <br>
+     <br>
+<hr style="height:1px;border:none;border-top:1px solid #303F9F;"/>
+    type  0：默认，获取经纬度；>0国家，省 市 区县 >1:streetNumber; >2:pois <br>
+    <input type="text" id="type" /><br> <br>
+
+     <input type="button" id="id_getlocation" value="获取一次地理位置信息" onclick="reqGetLocation()"/>
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+     <br>
+     参与会话的企业成员列表，格式为userid1;userid2;…，用分号隔开 <br>
+     <input type="text" id="userIds"/><br>
+
+     会话名称。单聊时该参数传入空字符串””即可 <br>
+     <input type="text" id="groupName"/><br>
+
+     <input type="button" id="id_openEnterprisechat" value="创建会话" onclick="reqOpenEnterpriseChat()"/>
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+     <br>
+     1表示该userid是企业成员<br>
+     <input type="text" id="type2" /><br>
+      <br>
+      可以是企业成员的id <br>
+     <input type="text" id="userid" /><br>
+      <br>
+     <input type="button" id="id_openuserprofile" value="打开个人信息页" onclick="reqOpenUserProfile()"/>
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+
+        current 图片 <input type="text" id="currenturl" value="http://img3.16fan.com/live/origin/201805/21/4D7B35fdf082e.jpg"/><br>
+图片2<input type="text" id="url1" value="http://img3.16fan.com/live/origin/201805/21/E421b24c08446.jpg"/><br>
+图片3<input type="text" id="url2" value="http://img3.16fan.com/live/origin/201805/21/4D7B35fdf082e.jpg"/><br>
+图片4<input type="text" id="url3" value="http://img3.16fan.com/live/origin/201805/21/2D02ebc5838e6.jpg"/><br>
+图片5<input type="text" id="url4" value="/sdcard/jpg.jpg"/><br>
+        <input type="button" id="id_reqpreviewimage" value="预览图片" onclick="reqPreviewImage()"/>
+
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+      <br>
+     最多可以选择的图片张数，默认9<br>
+     <input type="text" id="imagecount" value="9"/><br><br>
+
+     album 从相册选图，camera 使用相机，默认二者都有<br>
+     输入album <input type="text" id="album" value="album" /><br>
+     输入camera  <input type="text" id="camera" value="camera" /><br><br>
+
+     original 原图，compressed 压缩图，默认二者都有<br>
+     输入original  <input type="text" id="original2" value="original" /><br>
+     输入 compressed  <input type="text" id="compressed" value="compressed" /><br>
+      <input type="button" id="id_reqchooseimage" value="选择照片图片" onclick="reqChooseImage()"/>
+
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+保存图片到相册<br>
+<input type="text" id="imgpath" value="/sdcard/jpg.jpg" /><br><br>
+<input type="button" id="id_reqsaveimagetophotosalbum" value="保存图片到相册" onclick="reqSaveImageToPhotosAlbum()"/>
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+  获取图片宽 高 路径<br>
+  <input type="text" id="imgpath2" value="/sdcard/jpg.jpg" /><br><br>
+
+   <input type="button" id="id_reqgetimageinfo" value="获取图片宽 高 路径" onclick="reqGetImageInfo()"/>
+
+
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+<p>
+    <br>
+    选择模式，”single”表示单选，”multi”表示多选<br>
+    <input type="text" id="contacts" /><br>
+    <br>
+    <input type="button" id="id_contacts" value="获取联系人" onclick="reqSelectEnterpriseContact();"/>
+    <input type="hidden" id="id_multicontacts" value="获取多个联系人" onclick="getMultiContacts();"/>
+    <input type="hidden" id="id_singlecontact" value="获取单个联系人" onclick="getSingleContacts();"/>
+</p>
+
+<hr style="height:1px;border:none;border-top:3px solid #FF4081;"/>
+<br>
+    横竖屏手动切换<br>
+    <input type="button" id="id_changeScreen" value="横竖屏手动切换" onclick="reqChangeScreen();"/>
+<p>
+    <input type="hidden" id="text1" value="用户名(username)"/>
+</p>
+
+<p>
+    <input type="hidden" id="text2" value="password"/>
+</p>
+
+<p>
+    <input type="hidden" id="enter" value="发消息给Native" onclick="testClick();"
+    />
+</p>
+
+<p>
+    <input type="hidden" id="enter1" value="调用Native方法" onclick="testClick1();"
+    />
+</p>
+
+<p>
+    <input type="hidden" id="enter2" value="显示源代码" onclick="testDiv();"/>
+</p>
+
+<p>
+    <input type="hidden" id="open" value="打开文件1" onclick="onOpen();"/>
+</p>
+
+</body>
+<script>
+
+
+        function reqGetOpenId() {
+
+                    //send message to native
+                    window.WebViewJavascriptBridge.callHandler(
+                        'reqGetOpenId'
+                        , {}
+                        , function(responseData) {
+                            document.getElementById("show").innerHTML = " reqGetOpenId:" + responseData
+                            //alert(responseData);
+                        }
+                    );
+                }
+
+
+        function  setToken() {
+                    var　str1 =  document.getElementById("token").value;
+                    //send message to native
+                    window.WebViewJavascriptBridge.callHandler(
+                        'requestFromNativeTypeSetPrivateToken'
+                        , {'param':str1}
+                        , function(responseData) {
+                            document.getElementById("show").innerHTML = " setToken:" + responseData
+                            //alert(responseData);
+                        }
+                    );
+                }
+
+        function reqGetNetworkType() {
+
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqGetNetworkType'
+                       , {}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = " reqGetNetworkType:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqMakePhoneCall() {
+                   var　str1 =  document.getElementById("phoneNumber").value;
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqMakePhoneCall'
+                       , {'phone':str1}
+                       , function(responseData) {
+                           //document.getElementById("show").innerHTML = " reqMakePhoneCall:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqGetSystemInfo() {
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqGetSystemInfo'
+                       , {}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = " reqGetSystemInfo:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqDatePicker() {
+                   var　format =  document.getElementById("format").value;
+                   var　currentDate =  document.getElementById("currentDate").value;
+                   var　startDate =  document.getElementById("startDate").value;
+                   var　enzzate =  document.getElementById("enzzate").value;
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqDatePicker'
+                       , {'format':format,'currentDate':currentDate,'startDate':startDate,'enzzate':enzzate}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = " reqDatePicker:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqScan() {
+                   var　barqcode =  document.getElementById("barqcode").value;
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqScan'
+                       , {'type':barqcode}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqScan:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqGetLocation() {
+                   var　type =  document.getElementById("type").value;
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqGetLocation'
+                       , {'type':type}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqGetLocation:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqStopAutoLBS() {
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqStopAutoLBS'
+                       , {}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqStopAutoLBS:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqStartAutoLBS() {
+            var　lbs_type =  document.getElementById("lbs_type").value;
+
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqStartAutoLBS'
+                       , {'wgs84_gcj02':lbs_type}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqStartAutoLBS:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqOpenEnterpriseChat() {
+            var　userIds =  document.getElementById("userIds").value;
+            var groupName = document.getElementById("groupName").value;
+
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqOpenEnterpriseChat'
+                       , {'userIds':userIds,'groupName':groupName}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqOpenEnterpriseChat:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqOpenUserProfile() {
+            var　type =  document.getElementById("type2").value;
+            var userid = document.getElementById("userid").value;
+
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqOpenUserProfile'
+                       , {'type':type,'userid':userid}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqOpenUserProfile:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqPreviewImage(){
+                var current  =  document.getElementById("currenturl").value;
+                var url1 =  document.getElementById("url1").value; //"http://img3.16fan.com/live/origin/201805/21/14C5e483e7583.jpg";
+                var url2 = document.getElementById("url2").value;  // "http://img3.16fan.com/live/origin/201805/21/4D7B35fdf082e.jpg";
+                var url3 =  document.getElementById("url3").value;  //"http://img3.16fan.com/live/origin/201805/21/2D02ebc5838e6.jpg";
+                var url4 =  document.getElementById("url4").value;  //"/sdcard/jpg.jpg";
+
+                var arraylist= [url1,url2,url3,url4];
+                 //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqPreviewImage'
+                       , {'current':current,'urls':arraylist}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqPreviewImage:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+
+               }
+
+        function reqChooseImage(){
+                 var imagecount  =  document.getElementById("imagecount").value;
+                 var album  =  document.getElementById("album").value;
+                 var camera  =  document.getElementById("camera").value;
+                 var original  =  document.getElementById("original2").value;
+                 var compressed  =  document.getElementById("compressed").value;
+
+                 var sizeType;// =[album,camera];
+                 var sourceType;//=[original,compressed];
+                 if(album!=""&& camera!=""){
+                    sizeType = [album,camera];
+                 }else if(album!=""){
+                    sizeType = [album];
+                 }else if(camera!=""){
+                    sizeType = [camrea];
+                 }
+                 //alert("sizeType"+sizeType);
+
+                 if(original!=""&& compressed!=""){
+                    sourceType = [original,compressed];
+                 }else if(original!=""){
+                    sourceType = [original];
+                 }else if(compressed!=""){
+                    sourceType = [compressed];
+                 }
+                 //alert("sourceType"+sourceType);
+                 //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqChooseImage'
+                       , {'count':imagecount,'sizeType':sizeType,'sourceType':sourceType}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqChooseImage:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqSaveImageToPhotosAlbum() {
+            var　imgpath =  document.getElementById("imgpath").value;
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqSaveImageToPhotosAlbum'
+                       , {'filePath':imgpath}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqSaveImageToPhotosAlbum:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+        function reqGetImageInfo() {
+            var　imgpath2 =  document.getElementById("imgpath2").value;
+                   //send message to native
+                   window.WebViewJavascriptBridge.callHandler(
+                       'reqGetImageInfo'
+                       , {'src':imgpath2}
+                       , function(responseData) {
+                           document.getElementById("show").innerHTML = "reqGetImageInfo:" + responseData
+                           //alert(responseData);
+                       }
+                   );
+               }
+
+
+
+
+
+        function reqSelectEnterpriseContact() {
+            var str = document.getElementById("contacts").value;
+            //send message to native
+            window.WebViewJavascriptBridge.callHandler(
+                'reqSelectEnterpriseContact'
+                , {'contacts':str}
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = " reqSelectEnterpriseContact:" + responseData
+                    //alert(responseData);
+                }
+            );
+        }
+
+        function getMultiContacts() {
+            var str = 'multi'
+            //send message to native
+            window.WebViewJavascriptBridge.callHandler(
+                'requestFromNativeTypeContacts'
+                , {'param':str}
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = " getMultiContacts:" + responseData
+                    //alert(responseData);
+                }
+            );
+        }
+
+         function getSingleContacts() {
+            var str = 'single'
+            //send message to native
+            window.WebViewJavascriptBridge.callHandler(
+                'requestFromNativeTypeContacts'
+                , {'param':str}
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = " getSingleContacts:" + responseData
+                    //alert(responseData);
+                }
+            );
+        }
+
+
+        function reqChangeScreen() {
+             window.WebViewJavascriptBridge.callHandler(
+                'reqChangeScreen'
+                , {}
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = " reqChangeScreen:" + responseData
+                    //alert(responseData);
+                }
+            );
+        }
+
+        function onOpen() {
+          　var str1 = document.getElementById("text1").value;
+            var str2 = document.getElementById("text2").value;
+            var data = "name=" + str1 + ",pass=" + str2;
+            //call native method
+            window.WebViewJavascriptBridge.callHandler(
+                'functionOpen'
+                , {'param': data }
+                , function(responseData) {
+
+                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData;
+                  document.getElementById("pic").src = "file:///android_res/drawable/ic_action_scan.png";
+
+                }
+            );
+        }
+        function testDiv() {
+            document.getElementById("show").innerHTML = document.getElementsByTagName("html")[0].innerHTML;
+        }
+        function testClick() {
+		alert("e3232");
+            var str1 = document.getElementById("text1").value;
+            var str2 = document.getElementById("text2").value;
+            //发送消息给java本地代码
+            var data = {id: 1, content: "这是一个图片 <img src=\"a.png\"/> test\r\nhahaha"};
+            window.WebViewJavascriptBridge.send(
+                data
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "repsonseData from java, data = " + responseData
+                }
+            );
+        }
+        function testClick1() {
+            var str1 = document.getElementById("text1").value;
+            var str2 = document.getElementById("text2").value;
+            var data = "name=" + str1 + ",pass=" + str2;
+            //call native method
+            window.WebViewJavascriptBridge.callHandler(
+                'submitFromWeb'
+                , {'param': data }
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                }
+            );
+        }
+        function bridgeLog(logContent) {
+            document.getElementById("show").innerHTML = logContent;
+        }
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+       // 第一连接时初始化bridage
+        connectWebViewJavascriptBridge(function(bridge) {
+            bridge.init(function(message, responseCallback) {
+                console.log('JS got a message', message);
+                var data = {
+                    'Javascript Responds': '测试中文!'
+                };
+                console.log('JS responding with', data);
+                responseCallback(data);
+            });
+            // 注册一个"functionInJs",
+            bridge.registerHandler("functionInJs", function(data, responseCallback) {
+
+                document.getElementById("show").innerHTML = ("data from Java: = " + data);
+                var responseData = "Javascript Says  我要你的地址!";
+                // response层
+                responseCallback(responseData);
+            });
+
+            bridge.registerHandler("NativeToJSstartAutoLBS", function(data, responseCallback) {
+                var temp = document.getElementById("show").value;
+                document.getElementById("show").innerHTML = temp + data;
+
+                var responseData = "Javascript Says  我已经收到位置信息!";
+                // response层
+                responseCallback(responseData);
+            });
+        })
+        bridge.init(function(message, responseCallback) {
+        console.log('JS got a message', message);
+        var data = {
+            'Javascript Responds': 'Wee!'
+        };
+        console.log('JS responding with', data);
+        responseCallback(data);
+    });
+
+
+
+
+
+</script>
+
+</html>

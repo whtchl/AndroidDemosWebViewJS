@@ -1,0 +1,2 @@
+include ':LrucacheDemo',':contact', ':sdk', ':qrcodelib', ':utils', ':common', ':previewimage', ':weexlib', ':webviewjslib', 'PhotoPicker','zxinglibrary'
+project(':utils').projectDir = new File('Utils-master/utils')

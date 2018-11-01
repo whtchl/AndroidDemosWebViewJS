@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidDemosWebViewJS.iml" filepath="$PROJECT_DIR$/AndroidDemosWebViewJS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LrucacheDemo/LrucacheDemo.iml" filepath="$PROJECT_DIR$/LrucacheDemo/LrucacheDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" filepath="$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contact/contact.iml" filepath="$PROJECT_DIR$/contact/contact.iml" />
+      <module fileurl="file://$PROJECT_DIR$/previewimage/previewimage.iml" filepath="$PROJECT_DIR$/previewimage/previewimage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qrcodelib/qrcodelib.iml" filepath="$PROJECT_DIR$/qrcodelib/qrcodelib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdk/sdk.iml" filepath="$PROJECT_DIR$/sdk/sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Utils-master/utils/utils.iml" filepath="$PROJECT_DIR$/Utils-master/utils/utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webviewjslib/webviewjslib.iml" filepath="$PROJECT_DIR$/webviewjslib/webviewjslib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weexlib/weexlib.iml" filepath="$PROJECT_DIR$/weexlib/weexlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zxinglibrary/zxinglibrary.iml" filepath="$PROJECT_DIR$/zxinglibrary/zxinglibrary.iml" />
+    </modules>
+  </component>
+</project>
